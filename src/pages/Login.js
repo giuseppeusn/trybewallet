@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Input from '../components/Input';
 import { actionNewUser } from '../actions';
+import WalletIcon from '../images/wallet';
 
 class Login extends React.Component {
   constructor() {
@@ -52,26 +53,63 @@ class Login extends React.Component {
   }
 
   render() {
-    const { isDisabled } = this.state;
+    const { isDisabled, email, password } = this.state;
     return (
-      <div>
-        <Input
-          label="Email"
-          type="text"
-          id="email"
-          testeid="email"
-          onchange={ this.changeState }
-        />
-        <Input
-          label="Senha"
-          type="password"
-          id="password"
-          testeid="password"
-          onchange={ this.changeState }
-        />
-        <button type="button" disabled={ isDisabled } onClick={ this.saveInfo }>
-          Entrar
-        </button>
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-full max-w-xs rounded-md">
+          <form
+            className="bg-white shadow-md rounded px-8
+            pt-6 pb-8 mb-4 flex flex-col items-center"
+          >
+            <div className="flex content-center my-5">
+              <h1 className="text-gray-700 text-3xl font-bold uppercase">Trybewallet</h1>
+              <WalletIcon class="w-7 fill-gray-700 ml-2 self-end" />
+            </div>
+            <div className="mb-4">
+              <Input
+                type="text"
+                id="email"
+                testeid="email"
+                onchange={ this.changeState }
+                value={ email }
+                labelClass="block text-gray-700 text-sm font-bold mb-2"
+                inputClass="appearance-none bg-transparent border-b-2
+                border-gray-300 outline-none w-full text-gray-700 mr-3 py-3 px-2
+                leading-tight focus:border-gray-900 transition-all
+                ease-in duration-300"
+                placeholder="Email"
+              />
+            </div>
+            <div className="mb-6">
+              <Input
+                type="password"
+                id="password"
+                testeid="password"
+                onchange={ this.changeState }
+                value={ password }
+                labelClass="block text-gray-700 text-sm font-bold mb-2"
+                inputClass="appearance-none bg-transparent border-b-2
+                border-gray-300 outline-none w-full text-gray-700 mr-3 py-3 px-2
+                leading-tight focus:border-gray-900 transition-all
+                ease-in duration-300"
+                placeholder="Senha"
+              />
+            </div>
+            <div className="flex justify-center w-full">
+              <button
+                type="button"
+                disabled={ isDisabled }
+                onClick={ this.saveInfo }
+                className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2
+                px-4 rounded focus:outline-none focus:shadow-outline
+                center cursor-pointer disabled:bg-gray-600 disabled:text-gray-400
+                disabled:cursor-auto disabled:pointer-events-none w-full"
+              >
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
@@ -82,7 +120,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
-  history: PropTypes.shape.isRequired,
+  history: PropTypes.arrayOf([PropTypes.object]).isRequired,
   newUser: PropTypes.func.isRequired,
 };
 
