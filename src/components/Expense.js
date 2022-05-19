@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { actionDeleteExpense } from '../actions';
+import { actionDeleteExpense, actionEditing } from '../actions';
+import Edit from './Edit';
 
 class Expense extends Component {
   deleteExpense = ({ target }) => {
@@ -15,8 +16,10 @@ class Expense extends Component {
   }
 
   render() {
-    const { expenses } = this.props;
-    return (
+    const { expenses, edit, id, editing } = this.props;
+    return edit && id === expenses.id ? (
+      <Edit id={ id } />
+    ) : (
       <tr>
         <td>{expenses.description}</td>
         <td>{expenses.tag}</td>
@@ -35,6 +38,13 @@ class Expense extends Component {
         <td>
           <button
             type="button"
+            data-testid="edit-btn"
+            onClick={ () => editing(true, expenses.id) }
+          >
+            Editar
+          </button>
+          <button
+            type="button"
             data-testid="delete-btn"
             id={ expenses.id }
             onClick={ this.deleteExpense }
@@ -49,16 +59,22 @@ class Expense extends Component {
 
 const mapStateToProps = (state) => ({
   expensesGlobal: state.wallet.expenses,
+  edit: state.wallet.edit,
+  id: state.wallet.id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteGlobalExpense: (value) => dispatch(actionDeleteExpense(value)),
+  editing: (edit, id) => dispatch(actionEditing(edit, id)),
 });
 
 Expense.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.string).isRequired,
   expensesGlobal: PropTypes.arrayOf(PropTypes.string).isRequired,
   deleteGlobalExpense: PropTypes.func.isRequired,
+  editing: PropTypes.func.isRequired,
+  edit: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expense);

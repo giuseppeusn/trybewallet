@@ -2,6 +2,8 @@ export const NEW_USER = 'NEW_USER';
 export const ADD_CURRENCIES = 'ADD_CURRENCIES';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDITING_EXPENSE = 'EDITING_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const actionNewUser = (user) => ({
   type: NEW_USER,
@@ -26,6 +28,21 @@ export const actionAddExpense = (expenses) => ({
 
 export const actionDeleteExpense = (expenses) => ({
   type: DELETE_EXPENSE,
+  payload: {
+    expenses,
+  },
+});
+
+export const actionEditing = (edit, id) => ({
+  type: EDITING_EXPENSE,
+  payload: {
+    edit,
+    id,
+  },
+});
+
+export const actionEditExpense = (expenses) => ({
+  type: EDIT_EXPENSE,
   payload: {
     expenses,
   },

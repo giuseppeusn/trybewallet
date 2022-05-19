@@ -35,57 +35,65 @@ class Wallet extends React.Component {
 
   render() {
     const { value, description } = this.state;
-    const { currencies, expenses, fetchAll } = this.props;
+    const { currencies, expenses, fetchAll, edit } = this.props;
     return (
       <div>
         <Header />
-        <div>
-          <Input
-            label="Valor"
-            type="number"
-            id="value"
-            testeid="value"
-            onchange={ this.changeState }
-            value={ value }
-          />
-          <Input
-            label="Descrição"
-            type="text"
-            id="description"
-            testeid="description"
-            onchange={ this.changeState }
-            value={ description }
-          />
-          <Select
-            values={ currencies }
-            id="currency"
-            label="Moeda"
-            onchange={ this.changeState }
-          />
-          <Select
-            values={ ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'] }
-            id="method"
-            label="Método de pagamento"
-            testeid="method"
-            onchange={ this.changeState }
-          />
-          <Select
-            values={ ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'] }
-            id="tag"
-            label="Categoria"
-            testeid="tag"
-            onchange={ this.changeState }
-          />
-          <button
-            type="button"
-            onClick={ () => {
-              fetchAll(this.state, expenses.length);
-              this.cleanInput();
-            } }
-          >
-            Adicionar despesa
-          </button>
-        </div>
+        {!edit && (
+          <div>
+            <Input
+              label="Valor"
+              type="number"
+              id="value"
+              testeid="value"
+              onchange={ this.changeState }
+              value={ value }
+            />
+            <Input
+              label="Descrição"
+              type="text"
+              id="description"
+              testeid="description"
+              onchange={ this.changeState }
+              value={ description }
+            />
+            <Select
+              values={ currencies }
+              id="currency"
+              label="Moeda"
+              onchange={ this.changeState }
+            />
+            <Select
+              values={ ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'] }
+              id="method"
+              label="Método de pagamento"
+              testeid="method"
+              onchange={ this.changeState }
+            />
+            <Select
+              values={ [
+                'Alimentação',
+                'Lazer',
+                'Trabalho',
+                'Transporte',
+                'Saúde',
+              ] }
+              id="tag"
+              label="Categoria"
+              testeid="tag"
+              onchange={ this.changeState }
+            />
+            <button
+              type="button"
+              onClick={ () => {
+                fetchAll(this.state, expenses.length);
+                this.cleanInput();
+              } }
+            >
+              Adicionar despesa
+            </button>
+          </div>
+        )}
         <table>
           <tr>
             <th>Descrição</th>
@@ -98,8 +106,8 @@ class Wallet extends React.Component {
             <th>Moeda de conversão</th>
             <th>Editar/Excluir</th>
           </tr>
-          { expenses.length > 0
-            && expenses.map((elem) => <Expense key={ elem.id } expenses={ elem } />) }
+          {expenses.length > 0
+            && expenses.map((elem) => <Expense key={ elem.id } expenses={ elem } />)}
         </table>
       </div>
     );
@@ -109,6 +117,7 @@ class Wallet extends React.Component {
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  edit: state.wallet.edit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -122,6 +131,7 @@ Wallet.propTypes = {
   currencies: PropTypes.shape.isRequired,
   expenses: PropTypes.number.isRequired,
   fetchAll: PropTypes.func.isRequired,
+  edit: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
