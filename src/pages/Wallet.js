@@ -98,7 +98,8 @@ class Wallet extends React.Component {
             <th>Moeda de conversão</th>
             <th>Editar/Excluir</th>
           </tr>
-          { expenses.map((elem) => <Expense key={ elem.id } expenses={ elem } />) }
+          { expenses.length > 0
+            && expenses.map((elem) => <Expense key={ elem.id } expenses={ elem } />) }
         </table>
       </div>
     );
