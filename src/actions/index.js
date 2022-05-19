@@ -1,5 +1,6 @@
 export const NEW_USER = 'NEW_USER';
 export const ADD_CURRENCIES = 'ADD_CURRENCIES';
+export const ADD_EXPENSE = 'ADD_EXPENSE';
 
 export const actionNewUser = (user) => ({
   type: NEW_USER,
@@ -15,8 +16,25 @@ export const actionAddCurrencies = (currencies) => ({
   },
 });
 
+export const actionAddExpense = (expenses) => ({
+  type: ADD_EXPENSE,
+  payload: {
+    ...expenses,
+  },
+});
+
+export const fetchApiAll = (expense, id) => (
+  async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    delete data.USDT;
+    const object = { id, ...expense, exchangeRates: data };
+    dispatch(actionAddExpense(object));
+  }
+);
+
 export const fetchApi = () => (
-  async (dispatch) => (
+  (dispatch) => (
     fetch('https://economia.awesomeapi.com.br/json/all')
       .then((response) => response.json())
       .then((currencies) => dispatch(actionAddCurrencies(currencies)))
