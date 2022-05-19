@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { actionAddExpense, fetchApi, fetchApiAll } from '../actions';
 import Input from '../components/Input';
 import Select from '../components/Select';
+import Expense from '../components/Expense';
 
 class Wallet extends React.Component {
   constructor() {
@@ -97,6 +98,7 @@ class Wallet extends React.Component {
             <th>Moeda de conversão</th>
             <th>Editar/Excluir</th>
           </tr>
+          { expenses.map((elem) => <Expense key={ elem.id } expenses={ elem } />) }
         </table>
       </div>
     );
