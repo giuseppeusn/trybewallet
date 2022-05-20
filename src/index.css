@@ -8,6 +8,10 @@ th {
   max-width: 15px;
 }
 
+td {
+  padding: 8px 0 8px;
+}
+
 .fixTableHead {
   overflow-y: auto;
   max-height: 70%;

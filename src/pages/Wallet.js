@@ -66,6 +66,7 @@ class Wallet extends React.Component {
                 inputClass="border-2 rounded outline-none p-0.5 hover:border-sky-600
                 focus:border-sky-600"
                 labelClass="text-white uppercase"
+                maxLength="12"
               />
               <Select
                 values={ [
@@ -123,7 +124,8 @@ class Wallet extends React.Component {
               <button
                 type="button"
                 onClick={ () => {
-                  fetchAll(this.state, expenses.length);
+                  fetchAll(this.state,
+                    expenses.length ? expenses[expenses.length - 1].id + 1 : 0);
                   this.cleanInput();
                 } }
                 disabled={ isDisabled }

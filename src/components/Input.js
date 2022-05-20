@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Input extends Component {
   render() {
     const { label, type, id, testeid, onchange, value,
-      labelClass, inputClass, placeholder, className } = this.props;
+      labelClass, inputClass, placeholder, className, maxLength } = this.props;
     return (
       <div className={ className }>
         <label htmlFor={ id } className={ labelClass }>
@@ -18,7 +18,7 @@ class Input extends Component {
           value={ value }
           className={ inputClass }
           placeholder={ placeholder }
-          maxLength="12"
+          maxLength={ maxLength }
         />
       </div>
     );
@@ -36,6 +36,7 @@ Input.propTypes = {
   inputClass: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
+  maxLength: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -45,6 +46,7 @@ Input.defaultProps = {
   inputClass: null,
   placeholder: null,
   className: null,
+  maxLength: null,
 };
 
 export default Input;

@@ -20,8 +20,8 @@ const INITIAL_STATE = {
     //   },
     // },
   ],
-  id: 0,
-  edit: true,
+  // id: 0,
+  // edit: true,
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {

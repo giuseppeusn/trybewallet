@@ -54,6 +54,7 @@ class Edit extends Component {
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
             hover:border-gray-800 focus:border-gray-800"
+            maxLength="12"
           />
         </td>
         <td>

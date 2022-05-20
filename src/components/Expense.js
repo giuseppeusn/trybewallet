@@ -9,11 +9,12 @@ import DeleteIcon from '../images/delete-icon.svg';
 class Expense extends Component {
   deleteExpense = ({ target }) => {
     const { expensesGlobal, deleteGlobalExpense } = this.props;
+    console.log(target.id);
 
     const newExpenses = expensesGlobal.length > 1
       ? expensesGlobal.filter((e) => e.id !== Number(target.id))
       : [];
-
+    console.log(newExpenses);
     deleteGlobalExpense(newExpenses);
   }
 
@@ -22,7 +23,7 @@ class Expense extends Component {
     return edit && id === expenses.id ? (
       <Edit id={ id } />
     ) : (
-      <tr className="odd:bg-gray-600 even:bg-gray-500">
+      <tr className="odd:bg-gray-600 even:bg-gray-500 py-2">
         <td>{expenses.description}</td>
         <td>{expenses.tag}</td>
         <td>{expenses.method}</td>
@@ -64,6 +65,7 @@ class Expense extends Component {
               src={ DeleteIcon }
               alt="Edit button"
               className="w-7"
+              id={ expenses.id }
             />
           </button>
         </td>
