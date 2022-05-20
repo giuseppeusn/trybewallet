@@ -18,6 +18,7 @@ class Input extends Component {
           value={ value }
           className={ inputClass }
           placeholder={ placeholder }
+          maxLength="12"
         />
       </div>
     );
@@ -34,14 +35,16 @@ Input.propTypes = {
   labelClass: PropTypes.string,
   inputClass: PropTypes.string,
   placeholder: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Input.defaultProps = {
-  testeid: '',
-  value: '',
-  labelClass: '',
-  inputClass: '',
-  placeholder: '',
+  testeid: null,
+  value: null,
+  labelClass: null,
+  inputClass: null,
+  placeholder: null,
+  className: null,
 };
 
 export default Input;

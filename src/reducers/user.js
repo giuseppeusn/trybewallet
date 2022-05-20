@@ -1,7 +1,8 @@
 import { NEW_USER } from '../actions';
 
 const INITIAL_STATE = {
-  email: 'example@example.com',
+  // email: 'example@example.com',
+  email: '',
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {

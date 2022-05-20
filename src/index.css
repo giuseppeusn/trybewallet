@@ -7,3 +7,13 @@ th {
   padding: 5px;
   max-width: 15px;
 }
+
+.fixTableHead {
+  overflow-y: auto;
+  max-height: 70%;
+}
+.fixTableHead thead th {
+  position: sticky;
+  top: 0;
+  background-color:rgb(31 41 55);
+}

@@ -135,7 +135,7 @@ class Wallet extends React.Component {
                 Adicionar despesa
               </button>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center fixTableHead">
               <table
                 className="table-fixed w-11/12 mt-5 text-white text-center"
               >

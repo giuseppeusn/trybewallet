@@ -27,7 +27,12 @@ class Expense extends Component {
         <td>{expenses.tag}</td>
         <td>{expenses.method}</td>
         <td>{`US$ ${Number(expenses.value).toFixed(2)}`}</td>
-        <td>{expenses.exchangeRates[expenses.currency].name}</td>
+        <td>
+          {
+            (expenses.exchangeRates[expenses.currency].name)
+              .substr(0, expenses.exchangeRates[expenses.currency].name.indexOf('/'))
+          }
+        </td>
         <td>
           {`US$ ${Number(expenses.exchangeRates[expenses.currency].ask).toFixed(2)}`}
         </td>

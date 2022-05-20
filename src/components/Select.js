@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Input extends Component {
+class Select extends Component {
   render() {
-    const { label, id, values, value, testeid, onchange, inputClass, labelClass, className, optionClass } = this.props;
+    const { label, id, values, value, testeid, onchange,
+      inputClass, labelClass, className, optionClass } = this.props;
     return (
       <div className={ className }>
         <label htmlFor={ id } className={ labelClass }>
@@ -25,13 +26,24 @@ class Input extends Component {
   }
 }
 
-Input.propTypes = {
+Select.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   values: PropTypes.arrayOf([PropTypes.string.isRequired]).isRequired,
   value: PropTypes.string.isRequired,
   testeid: PropTypes.string.isRequired,
   onchange: PropTypes.func.isRequired,
+  labelClass: PropTypes.string,
+  inputClass: PropTypes.string,
+  className: PropTypes.string,
+  optionClass: PropTypes.string,
 };
 
-export default Input;
+Select.defaultProps = {
+  labelClass: null,
+  inputClass: null,
+  className: null,
+  optionClass: null,
+};
+
+export default Select;
