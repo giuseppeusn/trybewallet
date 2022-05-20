@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { actionEditExpense, actionEditing } from '../actions';
 import Input from './Input';
 import Select from './Select';
+import CheckIcon from '../images/checked-icon.svg';
 
 class Edit extends Component {
   constructor() {
@@ -41,7 +42,7 @@ class Edit extends Component {
     const { id, currencies } = this.props;
     const { value, description, currency, method, tag, exchangeRates } = this.state;
     return (
-      <tr>
+      <tr className="odd:bg-gray-600 even:bg-gray-500">
         <td>
           <Input
             label=""
@@ -50,6 +51,9 @@ class Edit extends Component {
             testeid="description"
             onchange={ this.changeState }
             value={ description }
+            inputClass="bg-inherit border-b-2 border-gray-700
+            text-center w-full outline-none my-2
+            hover:border-gray-800 focus:border-gray-800"
           />
         </td>
         <td>
@@ -60,6 +64,10 @@ class Edit extends Component {
             testeid="tag"
             onchange={ this.changeState }
             value={ tag }
+            inputClass="bg-inherit border-b-2 border-gray-700
+            text-center w-full outline-none my-2
+            hover:border-gray-800 focus:border-gray-800"
+            optionClass="bg-gray-700"
           />
         </td>
         <td>
@@ -70,6 +78,10 @@ class Edit extends Component {
             testeid="method"
             onchange={ this.changeState }
             value={ method }
+            inputClass="bg-inherit border-b-2 border-gray-700
+            text-center w-full outline-none my-2
+            hover:border-gray-800 focus:border-gray-800"
+            optionClass="bg-gray-700"
           />
         </td>
         <td>
@@ -80,6 +92,9 @@ class Edit extends Component {
             testeid="value"
             onchange={ this.changeState }
             value={ value }
+            inputClass="bg-inherit border-b-2 border-gray-700
+            text-center w-full outline-none my-2
+            hover:border-gray-800 focus:border-gray-800"
           />
         </td>
         <td>
@@ -90,13 +105,17 @@ class Edit extends Component {
             testeid="currency"
             onchange={ this.changeState }
             value={ currency }
+            inputClass="bg-inherit border-b-2 border-gray-700
+            text-center w-full outline-none my-2
+            hover:border-gray-800 focus:border-gray-800"
+            optionClass="bg-gray-700"
           />
         </td>
         <td>
-          {Number(currency && exchangeRates[currency].ask).toFixed(2)}
+          {`US$ ${Number(currency && exchangeRates[currency].ask).toFixed(2)}`}
         </td>
         <td>
-          {Number(currency && exchangeRates[currency].ask * value).toFixed(2)}
+          {`R$ ${Number(currency && exchangeRates[currency].ask * value).toFixed(2)}`}
         </td>
         <td>Real</td>
         <td>
@@ -104,7 +123,7 @@ class Edit extends Component {
             type="button"
             onClick={ () => this.editExpense(false, id) }
           >
-            Editar despesa
+            <img src={ CheckIcon } className="w-6" alt="check icon" />
           </button>
         </td>
       </tr>

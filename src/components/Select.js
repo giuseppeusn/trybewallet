@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 
 class Input extends Component {
   render() {
-    const { label, id, values, value, testeid, onchange } = this.props;
+    const { label, id, values, value, testeid, onchange, inputClass, labelClass, className, optionClass } = this.props;
     return (
-      <label htmlFor={ id }>
-        {label}
+      <div className={ className }>
+        <label htmlFor={ id } className={ labelClass }>
+          {label}
+        </label>
         <select
           id={ id }
           data-testid={ `${testeid}-input` }
           onChange={ onchange }
           value={ value }
+          className={ inputClass }
         >
           { values.map((elem) => (
-            <option key={ elem } value={ elem }>{elem}</option>
+            <option className={ optionClass } key={ elem } value={ elem }>{elem}</option>
           )) }
         </select>
-      </label>
+      </div>
     );
   }
 }

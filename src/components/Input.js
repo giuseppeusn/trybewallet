@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 class Input extends Component {
   render() {
     const { label, type, id, testeid, onchange, value,
-      labelClass, inputClass, placeholder } = this.props;
+      labelClass, inputClass, placeholder, className } = this.props;
     return (
-      <label htmlFor={ id } className={ labelClass }>
-        {label}
+      <div className={ className }>
+        <label htmlFor={ id } className={ labelClass }>
+          {label}
+        </label>
         <input
           type={ type }
           id={ id }
@@ -17,7 +19,7 @@ class Input extends Component {
           className={ inputClass }
           placeholder={ placeholder }
         />
-      </label>
+      </div>
     );
   }
 }

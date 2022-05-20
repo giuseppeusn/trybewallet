@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionDeleteExpense, actionEditing } from '../actions';
 import Edit from './Edit';
+import EditIcon from '../images/edit-icon.svg';
+import DeleteIcon from '../images/delete-icon.svg';
 
 class Expense extends Component {
   deleteExpense = ({ target }) => {
@@ -20,28 +22,32 @@ class Expense extends Component {
     return edit && id === expenses.id ? (
       <Edit id={ id } />
     ) : (
-      <tr>
+      <tr className="odd:bg-gray-600 even:bg-gray-500">
         <td>{expenses.description}</td>
         <td>{expenses.tag}</td>
         <td>{expenses.method}</td>
-        <td>{Number(expenses.value).toFixed(2)}</td>
+        <td>{`US$ ${Number(expenses.value).toFixed(2)}`}</td>
         <td>{expenses.exchangeRates[expenses.currency].name}</td>
         <td>
-          {Number(expenses.exchangeRates[expenses.currency].ask).toFixed(2)}
+          {`US$ ${Number(expenses.exchangeRates[expenses.currency].ask).toFixed(2)}`}
         </td>
         <td>
-          {Number(
+          {`R$ ${Number(
             expenses.exchangeRates[expenses.currency].ask * expenses.value,
-          ).toFixed(2)}
+          ).toFixed(2)}`}
         </td>
         <td>Real</td>
-        <td>
+        <td className="w-2">
           <button
             type="button"
             data-testid="edit-btn"
             onClick={ () => editing(true, expenses.id) }
           >
-            Editar
+            <img
+              src={ EditIcon }
+              alt="Edit button"
+              className="w-7 mr-2"
+            />
           </button>
           <button
             type="button"
@@ -49,7 +55,11 @@ class Expense extends Component {
             id={ expenses.id }
             onClick={ this.deleteExpense }
           >
-            Excluir
+            <img
+              src={ DeleteIcon }
+              alt="Edit button"
+              className="w-7"
+            />
           </button>
         </td>
       </tr>

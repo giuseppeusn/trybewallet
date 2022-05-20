@@ -3,7 +3,25 @@ import { ADD_CURRENCIES, ADD_EXPENSE, DELETE_EXPENSE,
 
 const INITIAL_STATE = {
   currencies: [],
-  expenses: [],
+  expenses: [
+    {
+      id: 0,
+      value: '100',
+      description: 'teste',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      exchangeRates: {
+        USD: {
+          ask: '4.88',
+          code: 'USD',
+          name: 'Dólar',
+        },
+      },
+    },
+  ],
+  id: 0,
+  edit: true,
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {

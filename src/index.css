@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+th {
+  height: 60px;
+  padding: 5px;
+  max-width: 15px;
+}

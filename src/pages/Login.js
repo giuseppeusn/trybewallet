@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Input from '../components/Input';
 import { actionNewUser } from '../actions';
-import WalletIcon from '../images/wallet';
+import Wallet from '../images/walletIcon.svg';
 
 class Login extends React.Component {
   constructor() {
@@ -63,7 +63,11 @@ class Login extends React.Component {
           >
             <div className="flex content-center my-5">
               <h1 className="text-gray-700 text-3xl font-bold uppercase">Trybewallet</h1>
-              <WalletIcon class="w-7 fill-gray-700 ml-2 self-end" />
+              <img
+                src={ Wallet }
+                className="w-7 fill-gray-700 ml-2"
+                alt="Uma carteira, logo trybewallet"
+              />
             </div>
             <div className="mb-4">
               <Input
