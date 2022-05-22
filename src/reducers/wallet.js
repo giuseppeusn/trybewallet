@@ -1,5 +1,5 @@
 import { ADD_CURRENCIES, ADD_EXPENSE, DELETE_EXPENSE,
-  EDITING_EXPENSE, EDIT_EXPENSE } from '../actions';
+  EDITING_EXPENSE, EDIT_EXPENSE, IS_FETCHING } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -22,6 +22,7 @@ const INITIAL_STATE = {
   ],
   // id: 0,
   // edit: true,
+  isFetching: false,
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
@@ -35,7 +36,8 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case EDITING_EXPENSE:
     return { ...state, ...action.payload };
   case EDIT_EXPENSE:
-    console.log(action.payload);
+    return { ...state, ...action.payload };
+  case IS_FETCHING:
     return { ...state, ...action.payload };
   default:
     return state;

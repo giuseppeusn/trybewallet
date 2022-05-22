@@ -21,7 +21,6 @@ class Expense extends Component {
 
   render() {
     const { expenses, edit, id, editing } = this.props;
-    console.log(expenses.exchangeRates);
     return edit && id === expenses.id ? (
       <Edit id={ id } />
     ) : (

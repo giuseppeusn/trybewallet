@@ -7,6 +7,7 @@ import { actionAddExpense, fetchApi, fetchApiAll } from '../actions';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Expense from '../components/Expense';
+import Load from '../components/Load';
 
 const INITIAL_STATE = {
   value: '',
@@ -48,9 +49,10 @@ class Wallet extends React.Component {
 
   render() {
     const { value, description, currency, method, tag, isDisabled } = this.state;
-    const { email, currencies, expenses, fetchAll } = this.props;
+    const { email, isFetching, currencies, expenses, fetchAll } = this.props;
     return (
       <div>
+        {isFetching && <Load /> }
         { email ? (
           <div className="h-[92vh]">
             <Header />
@@ -170,6 +172,7 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  isFetching: state.wallet.isFetching,
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
   edit: state.wallet.edit,
@@ -183,6 +186,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   fetch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string),
   expenses: PropTypes.arrayOf(PropTypes.string).isRequired,

@@ -4,6 +4,7 @@ export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const EDITING_EXPENSE = 'EDITING_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const IS_FETCHING = 'IS_FETCHING';
 
 export const actionNewUser = (user) => ({
   type: NEW_USER,
@@ -48,20 +49,31 @@ export const actionEditExpense = (expenses) => ({
   },
 });
 
+export const actionIsFetching = (bool) => ({
+  type: IS_FETCHING,
+  payload: {
+    isFetching: bool,
+  },
+});
+
 export const fetchApiAll = (expense, id) => (
   async (dispatch) => {
+    dispatch(actionIsFetching(true));
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await response.json();
     delete data.USDT;
     const object = { id, ...expense, exchangeRates: data };
     dispatch(actionAddExpense(object));
+    dispatch(actionIsFetching(false));
   }
 );
 
 export const fetchApi = () => (
-  (dispatch) => (
+  (dispatch) => {
+    dispatch(actionIsFetching(true));
     fetch('https://economia.awesomeapi.com.br/json/all')
       .then((response) => response.json())
       .then((currencies) => dispatch(actionAddCurrencies(currencies)))
-  )
+      .then(() => dispatch(actionIsFetching(false)));
+  }
 );
