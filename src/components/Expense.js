@@ -5,6 +5,7 @@ import { actionDeleteExpense, actionEditing } from '../actions';
 import Edit from './Edit';
 import EditIcon from '../images/edit-icon.svg';
 import DeleteIcon from '../images/delete-icon.svg';
+import formatter from '../helper/currencyFormatter';
 
 class Expense extends Component {
   deleteExpense = ({ target }) => {
@@ -20,14 +21,20 @@ class Expense extends Component {
 
   render() {
     const { expenses, edit, id, editing } = this.props;
+    console.log(expenses.exchangeRates);
     return edit && id === expenses.id ? (
       <Edit id={ id } />
     ) : (
-      <tr className="odd:bg-gray-600 even:bg-gray-500 py-2">
+      <tr className="odd:bg-gray-600 even:bg-gray-500">
         <td>{expenses.description}</td>
         <td>{expenses.tag}</td>
         <td>{expenses.method}</td>
-        <td>{`US$ ${Number(expenses.value).toFixed(2)}`}</td>
+        <td>
+          {
+            `${Number(expenses.value).toFixed(2)}
+            ${expenses.exchangeRates[expenses.currency].code}`
+          }
+        </td>
         <td>
           {
             (expenses.exchangeRates[expenses.currency].name)
@@ -35,12 +42,12 @@ class Expense extends Component {
           }
         </td>
         <td>
-          {`US$ ${Number(expenses.exchangeRates[expenses.currency].ask).toFixed(2)}`}
+          {formatter.format(Number(expenses.exchangeRates[expenses.currency].ask))}
         </td>
         <td>
-          {`R$ ${Number(
+          {formatter.format(Number(
             expenses.exchangeRates[expenses.currency].ask * expenses.value,
-          ).toFixed(2)}`}
+          ))}
         </td>
         <td>Real</td>
         <td className="w-2">

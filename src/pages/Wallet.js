@@ -52,7 +52,7 @@ class Wallet extends React.Component {
     return (
       <div>
         { email ? (
-          <div className="h-screen">
+          <div className="h-[92vh]">
             <Header />
             <div className="flex justify-around bg-gray-700 p-5">
               <Input

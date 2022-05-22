@@ -55,7 +55,7 @@ class Login extends React.Component {
   render() {
     const { isDisabled, email, password } = this.state;
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-[92vh]">
         <div className="w-full max-w-xs rounded-md">
           <form
             className="bg-white shadow-md rounded px-8

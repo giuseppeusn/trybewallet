@@ -5,6 +5,7 @@ import { actionEditExpense, actionEditing } from '../actions';
 import Input from './Input';
 import Select from './Select';
 import CheckIcon from '../images/checked-icon.svg';
+import formatter from '../helper/currencyFormatter';
 
 class Edit extends Component {
   constructor() {
@@ -53,7 +54,8 @@ class Edit extends Component {
             value={ description }
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
-            hover:border-gray-800 focus:border-gray-800"
+            hover:border-gray-800 focus:border-gray-800 transition-all
+            ease-in duration-300"
             maxLength="12"
           />
         </td>
@@ -67,7 +69,8 @@ class Edit extends Component {
             value={ tag }
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
-            hover:border-gray-800 focus:border-gray-800"
+            hover:border-gray-800 focus:border-gray-800 transition-all
+            ease-in duration-300"
             optionClass="bg-gray-700"
           />
         </td>
@@ -81,7 +84,8 @@ class Edit extends Component {
             value={ method }
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
-            hover:border-gray-800 focus:border-gray-800"
+            hover:border-gray-800 focus:border-gray-800 transition-all
+            ease-in duration-300"
             optionClass="bg-gray-700"
           />
         </td>
@@ -95,7 +99,8 @@ class Edit extends Component {
             value={ value }
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
-            hover:border-gray-800 focus:border-gray-800"
+            hover:border-gray-800 focus:border-gray-800 transition-all
+            ease-in duration-300"
           />
         </td>
         <td>
@@ -108,15 +113,16 @@ class Edit extends Component {
             value={ currency }
             inputClass="bg-inherit border-b-2 border-gray-700
             text-center w-full outline-none my-2
-            hover:border-gray-800 focus:border-gray-800"
+            hover:border-gray-800 focus:border-gray-800 transition-all
+            ease-in duration-300"
             optionClass="bg-gray-700"
           />
         </td>
         <td>
-          {`US$ ${Number(currency && exchangeRates[currency].ask).toFixed(2)}`}
+          {formatter.format(Number(currency && exchangeRates[currency].ask))}
         </td>
         <td>
-          {`R$ ${Number(currency && exchangeRates[currency].ask * value).toFixed(2)}`}
+          {formatter.format(Number(currency && exchangeRates[currency].ask * value))}
         </td>
         <td>Real</td>
         <td>

@@ -6,6 +6,7 @@ import Wallet from '../images/walletIconWhite.svg';
 import UserIcon from '../images/user-icon.svg';
 import MoneyIcon from '../images/money-icon.svg';
 import CoinIcon from '../images/coin-icon.svg';
+import formatter from '../helper/currencyFormatter';
 
 class Header extends Component {
   sumValues = () => {
@@ -17,7 +18,7 @@ class Header extends Component {
       sum += currency * elem.value;
     });
 
-    return sum.toFixed(2);
+    return formatter.format(sum);
   }
 
   render() {
@@ -50,8 +51,11 @@ class Header extends Component {
             className="bg-gray-600 text-white p-1.5 rounded-l w-8"
             alt="user icon"
           />
-          <p data-testid="total-field" className="bg-white py-1 px-1.5 rounded-r">
-            {`Total: R$ ${expenses.length > 0 ? this.sumValues() : 0}` }
+          <p
+            data-testid="total-field"
+            className="flex justify-center bg-white py-1 px-1.5 rounded-r min-w-[9rem]"
+          >
+            {`Total: ${expenses.length > 0 ? this.sumValues() : 'R$ 0'}` }
           </p>
         </div>
         <div className="flex content-center w-32">
