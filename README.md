@@ -15,7 +15,7 @@ Para visualizar o projeto localmente:
 ```
 npm install
 ```
-- Após instaldo, inicie com o comando:
+- Após instalado, inicie com o comando:
 ```
 npm start
 ```
