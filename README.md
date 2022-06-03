@@ -4,9 +4,8 @@
 
 🚧
 
-## Desenvolvido usando
+## Desenvolvido utilizando
 > React, Redux, Tailwind CSS, CSS3, HTML5, ES6
-
 
 ## Instalando dependências
 Para visualizar o projeto localmente:
