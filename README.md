@@ -10,12 +10,7 @@
 ## Instalando dependências
 Para visualizar o projeto localmente:
 - Clone o projeto
-- Entre no diretório
-- Rode o comando para instalar:
-```
-npm install
-```
-- Após instalado, inicie com o comando:
-```
-npm start
-```
+- Entre no diretório `trybewallet/`
+- Rode o comando `npm install` para instalar
+- Após instalado, entre no diretório `src/`
+- Rode o comando `npm start` para iniciar
