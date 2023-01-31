@@ -5,7 +5,7 @@
 Trybewallet é um projeto Front-end para ser uma carteira de controle de gastos com conversor de moedas (API). O usuário que utilizar a aplicação deve primeiramente fazer login e em seguida tem acesso para manipular suas despesas, podendo adicionar, remover e editar uma despesa.
 
 ## Desenvolvido utilizando
-> React, Redux, Tailwind CSS, CSS3, HTML5, ES6
+> React, Redux, Tailwind CSS, JavaScript
 
 ## Funcionamento
 
